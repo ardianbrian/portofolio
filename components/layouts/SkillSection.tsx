@@ -1,7 +1,6 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 export default function SkillsSection() {
   const skills = [
@@ -13,41 +12,25 @@ export default function SkillsSection() {
     "MySQL",
   ];
 
-  const [visibleSkills, setVisibleSkills] = useState<string[]>([]);
-
-  useEffect(() => {
-    const timeoutIds: NodeJS.Timeout[] = [];
-
-    skills.forEach((skill, index) => {
-      const timeoutId = setTimeout(() => {
-        setVisibleSkills((prev) => [...prev, skill]);
-      }, index * 600);
-      timeoutIds.push(timeoutId);
-    });
-
-    return () => {
-      timeoutIds.forEach(clearTimeout);
-    };
-  }, []);
-
   return (
-    <section className="py-20 bg-bg-gray-50 text-center">
-      <h2 className="text-4xl font-extrabold mb-8 text-gray-800">
+    <section className="py-10 p-2 md:py-16 bg-gray-50 text-center">
+      <h2 className="text-3xl md:text-4xl font-extrabold mb-6 md:mb-8 text-gray-800">
         My Superpower Stack ⚡️
       </h2>
-      <p className="mb-6 text-lg text-gray-600">
-        Here’s the tech toolkit I’ve been sharpening. These skills are my bread
-        and butter—ready to tackle any project!
+      <p className="mb-4 md:mb-6 text-base md:text-lg text-gray-600">
+        Here&apos;s the tech toolkit I&apos;ve been sharpening. These skills are
+        my bread and butter—ready to tackle any project!
       </p>
-      <div className="flex flex-wrap justify-center gap-6">
-        {visibleSkills.map((skill, index) => (
+      <div className="flex flex-wrap justify-center gap-3 md:gap-6">
+        {skills.map((skill, index) => (
           <motion.div
             key={skill}
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: index * 0.3 }}
+            viewport={{ once: true }}
           >
-            <Badge className="px-8 py-4 text-lg rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-md">
+            <Badge className="px-6 md:px-8 py-3 md:py-4 text-sm md:text-lg rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-md">
               {skill}
             </Badge>
           </motion.div>
