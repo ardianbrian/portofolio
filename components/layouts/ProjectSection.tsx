@@ -20,6 +20,7 @@ export default function ProjectsSection() {
       description:
         "A simple e-commerce website that allows users to browse products, add them to the cart, and make payments using a payment gateway. This project demonstrates payment system integration and a user-friendly experience.",
     },
+    // add more projects
   ];
 
   return (
